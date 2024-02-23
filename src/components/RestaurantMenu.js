@@ -24,7 +24,8 @@ const RestaurantMenu = () => {
   }
 
   const { name, avgRating, cuisines, totalRatingsString, costForTwoMessage } =
-    resInfo?.cards[0]?.card?.card?.info;
+    resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      ?.info;
 
   const itemData =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2].card?.card
@@ -39,7 +40,6 @@ const RestaurantMenu = () => {
         );
       }
     );
-
 
   return (
     <div className="w-3/5 mx-auto my-10 p-2">
@@ -86,7 +86,11 @@ const RestaurantMenu = () => {
               key={category.card?.card?.title}
               itemCategory={category}
               showItem={index === showIndex ? true : false}
-              setShowIndex={showIndex === index ? () => setShowIndex(null) : () => setShowIndex(index)}
+              setShowIndex={
+                showIndex === index
+                  ? () => setShowIndex(null)
+                  : () => setShowIndex(index)
+              }
             />
           );
         })}
