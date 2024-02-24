@@ -32,7 +32,7 @@ const CardItem = (props) => {
             <img
               src={CDN_URL + imageId}
               alt="card image"
-              className="shadow-sm mx-1 w-28 h-24 object-cover rounded-md inline-block"
+              className="shadow-sm mx-1 w-28 h-24 object-cover rounded-md inline-block border border-solid"
             />
           )}
 
