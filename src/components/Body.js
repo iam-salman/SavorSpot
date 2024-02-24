@@ -4,26 +4,24 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Offline from "./Offline";
+import { useSelector } from "react-redux";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [initialRestaurantList, setInitialRestaurantList] = useState([]);
 
+  const { lat, lng, loading, error } = useSelector((state) => state.city);
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [lat, lng]);
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D30.7333148%26lng%3D76.7794179%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING"
+      `https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D${lat}%26lng%3D${lng}%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING`
     );
 
     const json = await data.json();
-    console.log(json);
-
-    const initialList =
-      json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
 
     setRestaurantList(
       json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -42,8 +40,6 @@ const Body = () => {
     const filteredRestaurant = initialRestaurantList.filter((res) => {
       return res.info.name.toLowerCase().includes(searchQuery.toLowerCase());
     });
-
-    console.log(filteredRestaurant);
 
     setRestaurantList(filteredRestaurant);
   };
@@ -71,19 +67,6 @@ const Body = () => {
           className="px-6 py-3 rounded-sm bg-blue-700 text-white font-medium"
         >
           Search
-        </button>
-      </div>
-      <div className="m-8">
-        <button
-          className="px-6 py-3 rounded-sm bg-blue-700 text-white font-medium"
-          onClick={() => {
-            const filteredList = restaurantList.filter(
-              (restaurant) => restaurant.info.avgRating > 4.3
-            );
-            setRestaurantList(filteredList);
-          }}
-        >
-          Top Rated Restaurant
         </button>
       </div>
 

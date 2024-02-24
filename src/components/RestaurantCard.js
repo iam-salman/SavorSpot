@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/constants";
+import { MdStars } from "react-icons/md";
 
 const RestaurantCard = ({ resData }) => {
   const { name, cloudinaryImageId, cuisines, avgRating } = resData?.info;
@@ -16,7 +17,8 @@ const RestaurantCard = ({ resData }) => {
         </h5>
 
         <h5 className="font-medium text-sm">
-          {avgRating} ⭐ • {resData.info.sla.deliveryTime} mins
+          <MdStars className="inline text-green-700 rounded-full mr-1 mb-1 text-lg" />
+          {avgRating} • {resData.info.sla.deliveryTime} mins
         </h5>
       </div>
     </div>
@@ -27,7 +29,7 @@ export const PromotedWithLabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        <label className="absolute font-extrabold text-sm bg-slate-950 text-white px-2 py-1 my-2 -ml-2 shadow-lg">
+        <label className="absolute font-bold text-sm bg-slate-950 text-white px-2 py-1 my-2 -ml-2 shadow-lg">
           LOVED BY MORE
         </label>
         <RestaurantCard {...props} />

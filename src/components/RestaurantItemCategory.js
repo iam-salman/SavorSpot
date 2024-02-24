@@ -1,19 +1,19 @@
 import CardItem from "./CardItem";
 
 const RestaurantItemCategory = ({ itemCategory, showItem, setShowIndex }) => {
-
   const items = itemCategory?.card?.card?.itemCards;
 
   const clickHandle = () => setShowIndex();
 
   return (
-    <div className="py-4 px-3 my-2 shadow-lg border-gray-200 border-2 rounded-lg">
+    <div className="py-4">
       <div
         onClick={clickHandle}
         className="flex justify-between items-center cursor-pointer"
       >
-        <span className="font-medium px-3 text-lg">
-          {itemCategory?.card?.card?.title} ({itemCategory?.card?.card?.itemCards.length})
+        <span className="font-bold px-3 text-[17px]">
+          {itemCategory?.card?.card?.title} (
+          {itemCategory?.card?.card?.itemCards.length})
         </span>
         <span className="text-2xl">
           {showItem ? (
@@ -33,6 +33,8 @@ const RestaurantItemCategory = ({ itemCategory, showItem, setShowIndex }) => {
           </div>
         </div>
       )}
+
+      <div className="h-3 mt-3" style={{ backgroundColor: "#F1F1F6" }}></div>
     </div>
   );
 };
