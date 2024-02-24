@@ -1,5 +1,5 @@
 import logoImage from "../../images/logo.png";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CardItem from "./CardItem";
@@ -11,6 +11,7 @@ import Shimmer from "./Shimmer";
 const Header = () => {
   const [BtnName, setBtnName] = useState("Login");
   const dispatch = useDispatch();
+
   const { lat, lng, currCity, loading, error } = useSelector(
     (state) => state.city
   );
