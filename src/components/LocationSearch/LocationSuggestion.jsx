@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { RiMapPin3Line } from "react-icons/ri";
 import GlobalContext from "../../contexts/GlobalContext";
 import { COORDINATES } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const LocationSuggestion = ({ area }) => {
   const { setCoordinates, setSearchPlace } = useContext(GlobalContext);
+
+  const navigate = useNavigate();
 
   const handleCoordinates = async () => {
     try {
@@ -18,6 +21,8 @@ const LocationSuggestion = ({ area }) => {
         lng: data?.data[0]?.geometry?.location?.lng,
         place: data?.data[0].formatted_address,
       });
+
+      navigate("/");
     } catch (error) {
       console.error("Error fetching coordinates:", error);
     }

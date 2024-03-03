@@ -12,7 +12,12 @@ const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ coordinates, setCoordinates, searchPlace, setSearchPlace }}
+      value={{
+        coordinates,
+        setCoordinates,
+        searchPlace,
+        setSearchPlace,
+      }}
     >
       {children}
     </GlobalContext.Provider>

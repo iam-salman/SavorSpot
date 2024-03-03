@@ -19,7 +19,7 @@ const CardItem = (props) => {
       <div className="flex justify-between mt-4 px-3 py-2">
         <div className="w-9/12">
           <h4 className="font-bold mt-4">{name}</h4>
-          <h5 className="font-medium text-gray-600">
+          <h5 className="font-bold text-sm text-gray-500">
             ₹{price / 100 || defaultPrice / 100}
           </h5>
           <p className="mt-2 mb-6 text-[13px] text-gray-400 pr-8">
@@ -27,7 +27,7 @@ const CardItem = (props) => {
           </p>
         </div>
 
-        <div className="my-6 w-2/12">
+        <div className="my-6 w-2/12 flex flex-col items-center">
           {imageId && (
             <img
               src={CDN_URL + imageId}
@@ -37,7 +37,7 @@ const CardItem = (props) => {
           )}
 
           <button
-            className="bg-white shadow-sm text-green-500 font-medium px-5 py-1 rounded-md border border-green-500 absolute -mt-7 ml-6 hover:shadow-md"
+            className="bg-white shadow-sm text-green-500 font-medium px-5 py-1 rounded-md border border-green-500  hover:shadow-md absolute mt-[68px]"
             onClick={() => handleAddItem(props)}
           >
             ADD <span className="absolute text-[9px] text-right ">+</span>

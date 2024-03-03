@@ -11,7 +11,7 @@ const RestaurantItemCategory = ({ itemCategory, showItem, setShowIndex }) => {
         onClick={clickHandle}
         className="flex justify-between items-center cursor-pointer"
       >
-        <span className="font-bold px-3 text-[17px]">
+        <span className="font-extrabold  px-3 text-[17px]">
           {itemCategory?.card?.card?.title} (
           {itemCategory?.card?.card?.itemCards.length})
         </span>

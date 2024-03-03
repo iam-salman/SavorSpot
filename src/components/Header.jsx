@@ -21,7 +21,11 @@ const Header = () => {
       <div className="flex justify-between items-center h-20  mx-36">
         <div className="flex justify-between items-center gap-10">
           <NavLink to="/">
-            <img src={logo} alt="" className="w-16" />
+            <img
+              src={logo}
+              alt=""
+              className="w-16 transition-all duration-300 hover:scale-110"
+            />
           </NavLink>
           <div
             className="flex items-center gap-2 cursor-pointer hover:text-custom-orange"

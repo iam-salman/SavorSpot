@@ -7,6 +7,7 @@ import { PLACE_SUGGESTION_API } from "../../utils/constants";
 const SearchArea = ({ setSearchArea }) => {
   const [listArea, setListArea] = useState([]);
   const [place, setPlace] = useState("");
+  const [showSearchArea, setShowSearchArea] = useState(false);
 
   const handlePlaceFetch = async () => {
     const data = await fetch(PLACE_SUGGESTION_API + place);
@@ -15,18 +16,30 @@ const SearchArea = ({ setSearchArea }) => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      handlePlaceFetch();
-    }, 200);
+    if (place) {
+      const timer = setTimeout(() => {
+        handlePlaceFetch();
+      }, 200);
 
-    return () => {
-      clearTimeout(timer);
-    };
+      return () => {
+        clearTimeout(timer);
+      };
+    }
   }, [place]);
 
+  useEffect(() => {
+    setShowSearchArea(true);
+  }, []);
+
   return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-65 z-45">
-      <div className="fixed left-0 top-0 h-full w-[580px] bg-white z-50 shadow-2xl">
+    <div className="fixed inset-0 bg-gray-900 bg-opacity-65 z-40">
+      <div
+        className={`fixed left-0 top-0 h-full w-[580px] bg-white z-50 shadow-2xl transition-transform duration-500 ${
+          showSearchArea
+            ? "transform translate-x-0"
+            : "transform -translate-x-full"
+        }`}
+      >
         <div className="ml-40 mt-8">
           <RxCross2
             className="text-xl cursor-pointer"
