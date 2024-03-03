@@ -1,26 +1,41 @@
-import { useState } from "react";
-import Shimmer from "./Shimmer";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { useState, useEffect } from "react";
+import Shimmer from "../shimmer/Shimmer";
 import { useParams } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
-import Offline from "./Offline";
 import RestaurantItemCategory from "./RestaurantItemCategory";
 import { TbCoinRupee } from "react-icons/tb";
 import { MdStars, MdTimelapse } from "react-icons/md";
 import { IoBicycleSharp } from "react-icons/io5";
+import { MENU_API } from "../../utils/constants";
 
 const RestaurantMenu = () => {
+  const [resInfo, setResInfo] = useState(null);
+  const [showIndex, setShowIndex] = useState(0);
   const { resID } = useParams();
 
-  const resInfo = useRestaurantMenu(resID);
+  const parts = resID.split("-");
+  const id = parts[parts.length - 1];
 
-  const onlineStatus = useOnlineStatus();
+  const api =
+    MENU_API +
+    `30.7046486%26lng%3D76.71787259999999%26restaurantId%3D${id}%26catalog_qa%3Dundefined%26submitAction%3DENTER`;
 
-  const [showIndex, setShowIndex] = useState(0);
+  const fetchMenu = async () => {
+    try {
+      const response = await fetch(api);
+      if (!response.ok) {
+        throw new Error("Failed to fetch menu");
+      }
 
-  if (onlineStatus === false) {
-    return <Offline />;
-  }
+      const menuData = await response.json();
+      setResInfo(menuData);
+    } catch (error) {
+      console.error("Error fetching menu:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMenu();
+  }, []);
 
   if (resInfo === null) {
     return <Shimmer />;
@@ -33,12 +48,12 @@ const RestaurantMenu = () => {
     totalRatingsString,
     costForTwoMessage,
     areaName,
-  } = resInfo?.cards[2]?.card?.card?.info;
+  } = resInfo?.data?.cards[0]?.card?.card?.info;
 
-  console.log(resInfo?.cards[2]?.card?.card?.info);
+  console.log(resInfo?.data?.cards[0]?.card?.card?.info);
 
   const data =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+    resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (item) => {
         return (
           item?.card?.card?.["@type"] ===
@@ -56,11 +71,12 @@ const RestaurantMenu = () => {
           <p className="text-gray-500 text-xs my-1">
             {areaName +
               ", " +
-              resInfo?.cards[2]?.card?.card?.info?.sla?.lastMileTravelString}
+              resInfo?.data?.cards[0]?.card?.card?.info?.sla
+                ?.lastMileTravelString}
           </p>
           <p className="text-gray-500 text-[13px] mt-3">
             <IoBicycleSharp className="inline text-xl mr-2" />
-            {resInfo?.cards[2]?.card?.card?.info.feeDetails.message}
+            {resInfo?.data?.cards[0]?.card?.card?.info.feeDetails.message}
           </p>
         </div>
         <div className="flex-col justify-between items-center shadow-md p-2 mx-2 mb-2 mt-7 rounded-md">
@@ -83,9 +99,9 @@ const RestaurantMenu = () => {
         <div className="flex items-center mr-2">
           <MdTimelapse className="text-4xl px-2" />
           <h5 className="font-bold text-sm">
-            {resInfo?.cards[2]?.card?.card?.info?.sla.deliveryTime
-              ? `${resInfo?.cards[2]?.card?.card?.info?.sla.deliveryTime}-${resInfo?.cards[2]?.card?.card?.info?.sla.maxDeliveryTime} MIN`
-              : `${resInfo?.cards[2]?.card?.card?.info?.nearestOutletNudge?.nearestOutletInfo?.siblingOutlet?.sla?.deliveryTime} MIN`}
+            {resInfo?.data?.cards[0]?.card?.card?.info?.sla.deliveryTime
+              ? `${resInfo?.data?.cards[0]?.card?.card?.info?.sla.deliveryTime}-${resInfo?.data?.cards[0]?.card?.card?.info?.sla.maxDeliveryTime} MIN`
+              : `${resInfo?.data?.cards[0]?.card?.card?.info?.nearestOutletNudge?.nearestOutletInfo?.siblingOutlet?.sla?.deliveryTime} MIN`}
           </h5>
         </div>
 

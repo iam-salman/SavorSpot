@@ -1,16 +1,16 @@
-import { CDN_URL } from "../utils/constants";
+import { CDN_URL } from "../../utils/constants";
 import { MdStars } from "react-icons/md";
 
 const RestaurantCard = ({ resData }) => {
   const { name, cloudinaryImageId, cuisines, avgRating } = resData?.info;
   return (
-    <div className="w-72 flex-col items-center my-5">
+    <div className="w-64 flex-col items-center my-3">
       <img
         src={CDN_URL + cloudinaryImageId}
         alt="biryani"
-        className="w-72 h-44 object-cover rounded-2xl"
+        className="w-64 h-40 object-cover rounded-2xl"
       />
-      <div className="mx-2 mb-2 p-3">
+      <div className=" mb-2 p-3">
         <h3 className="my-1 font-bold truncate">{name}</h3>
         <h5 className="text-slate-600 my-1 font-medium text-sm truncate">
           {cuisines.join(", ")}

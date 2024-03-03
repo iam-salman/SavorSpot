@@ -5,27 +5,27 @@ A food delivery application made using **React** and **Swiggy's API**. This proj
 ## Tech Stack
 
 - **React**
-- **Parcel**
 - **Tailwind CSS**
-- **Redux-toolkit**
 
 ## How to use
 
 1. Clone the repo:
+
    ```
    git clone https://github.com/salmanahmed-chd/SavorSpot.git
    ```
 
 2. Install dependencies:
+
    ```
    npm install
    ```
 
 3. Start the dev server:
    ```
-   npm start
+   npm run dev
    ```
-   
+
 Feel free to customize this README for your own project! 🚀🍔🍕🍟
 
 ---

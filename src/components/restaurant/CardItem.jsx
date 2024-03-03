@@ -1,17 +1,17 @@
-import { useDispatch } from "react-redux";
-import { CDN_URL } from "../utils/constants";
-import { addItem } from "../utils/cartSlice";
+// import { useDispatch } from "react-redux";
+import { CDN_URL } from "../../utils/constants";
+// import { addItem } from "../utils/cartSlice";
 
 // Card for the items which can bought from specific restaurant
 const CardItem = (props) => {
   const { name, price, defaultPrice, description, imageId } =
     props?.infoData?.card?.info;
 
-  const dispatch = useDispatch();
+  //   const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
-    // Dispatch an action
-    dispatch(addItem(item));
+    // // Dispatch an action
+    // dispatch(addItem(item));
   };
 
   return (
