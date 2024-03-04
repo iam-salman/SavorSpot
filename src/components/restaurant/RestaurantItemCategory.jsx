@@ -6,12 +6,12 @@ const RestaurantItemCategory = ({ itemCategory, showItem, setShowIndex }) => {
   const clickHandle = () => setShowIndex();
 
   return (
-    <div className="py-4">
+    <div className="lg:py-4">
       <div
         onClick={clickHandle}
         className="flex justify-between items-center cursor-pointer"
       >
-        <span className="font-extrabold  px-3 text-[17px]">
+        <span className="font-extrabold  lg:px-3 text-[17px]">
           {itemCategory?.card?.card?.title} (
           {itemCategory?.card?.card?.itemCards.length})
         </span>
@@ -25,7 +25,7 @@ const RestaurantItemCategory = ({ itemCategory, showItem, setShowIndex }) => {
       </div>
 
       {showItem && (
-        <div className="mt-10">
+        <div className="my-1 lg:mt-10">
           <div className="item-container">
             {items.map((item) => {
               return <CardItem key={item.card.info.id} infoData={item} />;

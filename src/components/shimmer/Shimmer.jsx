@@ -2,7 +2,7 @@ import HomeShimmer from "./HomeShimmer";
 
 const Shimmer = () => {
   return (
-    <div className="flex flex-wrap justify-between mx-20 mt-6 px-20">
+    <div className="flex flex-wrap justify-between mt-6 mx-4 lg:mx-20 lg:px-20">
       <HomeShimmer />
       <HomeShimmer />
       <HomeShimmer />

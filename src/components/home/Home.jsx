@@ -21,19 +21,25 @@ const Home = () => {
     setLoading(true);
     try {
       const response = await fetch(MENU_API);
+
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }
+
       const json = await response.json();
+
       const restaurantData =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants ||
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
       if (restaurantData) {
+        console.log(restaurantData);
         setApiData(json?.data?.cards);
         setRestaurantChain(restaurantData);
         setOnlineRestaurant(
           json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants
+            ?.restaurants || []
         );
       } else {
         throw new Error("Unexpected response format");
@@ -55,14 +61,15 @@ const Home = () => {
         <Shimmer />
       ) : (
         <div className="">
-          <div className="mx-20 mt-6 px-20">
+          <div className="mx-4 lg:mx-20 mt-6 lg:px-20">
             {apiData && (
-              <h1 className="text-[22px] font-extrabold">
-                {apiData[1]?.card?.card?.header?.title}
+              <h1 className="text-xl md:text-[22px] font-extrabold">
+                {apiData[1]?.card?.card?.header?.title ||
+                  apiData[0]?.card?.card?.title}
               </h1>
             )}
           </div>
-          <div className="flex flex-wrap justify-between mx-20 px-20 py-3">
+          <div className="flex flex-wrap justify-between mx-4 lg:mx-20 lg:px-20 py-3">
             {restaurantChain.map((restaurant) => (
               <Link
                 key={restaurant.info.id}
@@ -85,11 +92,17 @@ const Home = () => {
               </h1>
             )}
           </div>
-          <div className="flex flex-wrap justify-between mx-20 px-20 py-3">
+          <div className="flex flex-wrap justify-between lg:mx-20 lg:px-20 py-3">
             {onlineRestaurant.map((restaurant) => (
               <Link
                 key={restaurant.info.id}
-                to={"/restaurant/" + restaurant.info.id}
+                to={`/restaurants/${restaurant.info.name
+                  .toLowerCase()
+                  .replace(/\s/g, "-")}-${restaurant.info.locality
+                  .toLowerCase()
+                  .replace(/\s/g, "-")}-${restaurant.info.areaName
+                  .toLowerCase()
+                  .replace(/\s/g, "-")}-${restaurant.info.id}`}
               >
                 <RestaurantCard resData={restaurant} />
               </Link>

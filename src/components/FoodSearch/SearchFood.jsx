@@ -50,8 +50,8 @@ const SearchFood = () => {
   }, [searchApi, query]);
 
   return (
-    <div className="w-3/5 mx-auto px-10 mt-12">
-      <div className="mb-8">
+    <div className="lg:w-3/5 mx-auto px-4 lg:px-10 mt-12">
+      <div className="mb-8 sticky top-24">
         <input
           type="text"
           placeholder="Search for restaurants and food"

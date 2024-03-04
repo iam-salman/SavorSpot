@@ -19,7 +19,7 @@ const SearchArea = ({ setSearchArea }) => {
     if (place) {
       const timer = setTimeout(() => {
         handlePlaceFetch();
-      }, 200);
+      }, 100);
 
       return () => {
         clearTimeout(timer);
@@ -34,31 +34,36 @@ const SearchArea = ({ setSearchArea }) => {
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-65 z-40">
       <div
-        className={`fixed left-0 top-0 h-full w-[580px] bg-white z-50 shadow-2xl transition-transform duration-500 ${
+        className={`fixed left-0 top-0 h-full w-full md:w-[580px] bg-white z-50 shadow-2xl transition-transform duration-500 ${
           showSearchArea
             ? "transform translate-x-0"
             : "transform -translate-x-full"
         }`}
       >
-        <div className="ml-40 mt-8">
+        <div className="ml-8 lg:ml-40 mt-8">
           <RxCross2
-            className="text-xl cursor-pointer"
-            onClick={() => setSearchArea(false)}
+            className="text-2xl lg:text-xl cursor-pointer"
+            onClick={() => {
+              setShowSearchArea(false);
+              setTimeout(() => {
+                setSearchArea(false);
+              }, 500);
+            }}
           />
         </div>
 
-        <div className="ml-40 mt-8">
+        <div className="ml-8 lg:ml-40 mt-8">
           <input
             type="text"
             placeholder="Search for area, street name.."
-            className="px-6 py-[14px] w-[360px] border-2 border-solid-gray-500 font-bold text-sm outline-none focus:shadow-md"
+            className="px-6 py-[14px] w-80 lg:w-[360px] border-2 border-solid-gray-500 font-bold text-sm outline-none focus:shadow-md"
             value={place}
             onChange={(e) => setPlace(e.target.value)}
           />
         </div>
 
-        <div className="ml-40 mt-8">
-          <div className="px-6 py-4 w-[360px] border-2 border-solid-gray-500 font-medium text-sm outline-none focus:shadow-md ">
+        <div className="ml-8 lg:ml-40 mt-8">
+          <div className="px-6 py-4 w-80 lg:w-[360px] border-2 border-solid-gray-500 font-medium text-sm outline-none focus:shadow-md ">
             <div className="flex items-center gap-2">
               <CiGps className="text-2xl text-gray-800 inline" />
               <span className="">Get Current Location</span>
@@ -67,7 +72,7 @@ const SearchArea = ({ setSearchArea }) => {
           </div>
         </div>
 
-        <div className="ml-40 mt-8">
+        <div className="ml-8 lg:ml-40 mt-8">
           <div className=" w-[360px]">
             {listArea &&
               listArea.map((area) => {
