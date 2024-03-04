@@ -85,9 +85,9 @@ const Home = () => {
               </Link>
             ))}
           </div>
-          <div className="mx-20 mt-6 px-20">
+          <div className="mx-4 lg:mx-20 mt-6 lg:px-20">
             {apiData && (
-              <h1 className="text-[22px] font-extrabold">
+              <h1 className="text-xl md:text-[22px] font-extrabold">
                 {apiData[2]?.card?.card?.title}
               </h1>
             )}

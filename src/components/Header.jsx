@@ -19,8 +19,8 @@ const Header = () => {
   return (
     <div className="shadow-md sticky top-0 bg-white z-50">
       <div className="mx-4 lg:mx-36">
-        <div className="flex justify-between items-center h-20">
-          <div className="flex justify-between items-center gap-10">
+        <div className="flex justify-between items-center h-16 lg:h-20">
+          <div className="flex justify-between items-center gap-2 lg:gap-10">
             <NavLink to="/">
               <img
                 src={logo}
@@ -33,11 +33,13 @@ const Header = () => {
               onClick={() => setSearchPlace(true)}
             >
               <p className="font-extrabold lg:text-xs relative">
-                Other
-                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-black"></span>
+                <span className="hidden md:block">
+                  Other
+                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-black"></span>
+                </span>
               </p>
 
-              <p className="text-gray-400 lg:text-sm truncate max-w-52">
+              <p className="text-gray-400 lg:text-sm truncate max-w-20 lg:max-w-52">
                 {place}
               </p>
               <FaAngleDown className="inline text-custom-orange font-bold" />

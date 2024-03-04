@@ -6,7 +6,7 @@ const RestaurantItemCategory = ({ itemCategory, showItem, setShowIndex }) => {
   const clickHandle = () => setShowIndex();
 
   return (
-    <div className="lg:py-4">
+    <div className="py-1 lg:py-3">
       <div
         onClick={clickHandle}
         className="flex justify-between items-center cursor-pointer"

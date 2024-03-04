@@ -68,36 +68,41 @@ const RestaurantMenu = () => {
 
   return (
     <div className="mx-4 lg:w-1/2 lg:mx-auto lg:my-10 p-2">
-      <div className="flex justify-between my-4 items-center">
-        <div>
-          <h2 className="font-extrabold text-gray-700 my-2 text-xl">{name}</h2>
-          <p className="text-gray-500 text-sm lg:text-xs my-1">
-            {cuisines.join(", ")}
-          </p>
-          <p className="text-gray-500 text-sm lg:text-xs my-1">
-            {areaName +
-              ", " +
-              (resInfo?.data?.cards[0]?.card?.card?.info?.sla
-                ?.lastMileTravelString ||
-                resInfo?.data?.cards[2]?.card?.card?.info?.sla
-                  ?.lastMileTravelString)}
-          </p>
-          <p className="text-gray-500 text-sm lg:text-[13px] mt-3">
-            <IoBicycleSharp className="inline text-xl mr-2" />
-            {resInfo?.data?.cards[0]?.card?.card?.info?.feeDetails?.message ||
-              resInfo?.data?.cards[2]?.card?.card?.info?.feeDetails?.message}
-          </p>
+      <div className="">
+        <div className="flex justify-between lg:my-4 items-center">
+          <div className="w-3/5">
+            <h2 className="font-extrabold text-gray-700 my-2 text-xl">
+              {name}
+            </h2>
+            <p className="text-gray-500 text-sm lg:text-xs my-1">
+              {cuisines.join(", ")}
+            </p>
+            <p className="text-gray-500 text-sm lg:text-xs my-1">
+              {areaName +
+                ", " +
+                (resInfo?.data?.cards[0]?.card?.card?.info?.sla
+                  ?.lastMileTravelString ||
+                  resInfo?.data?.cards[2]?.card?.card?.info?.sla
+                    ?.lastMileTravelString)}
+            </p>
+          </div>
+          <div className="flex-col justify-between items-center shadow-sm px-1 w-[68px] h-[72px] py-1 mt-3 rounded-md border border-gray-200">
+            <h4 className="mx-1 mt-1 font-extrabold text-sm text-green-600">
+              <MdStars className="inline  rounded-full mr-1 mb-1 text-lg" />{" "}
+              {avgRating}
+            </h4>
+            <hr className="border-dotted my-2"></hr>
+            <p className="text-[10px] mb-1 font-bold text-gray-500">
+              {totalRatingsString}
+            </p>
+          </div>
         </div>
-        <div className="flex-col justify-between items-center shadow-sm px-1 py-1  rounded-md border border-gray-200">
-          <h4 className="mx-1 mt-1 font-extrabold text-sm text-green-600">
-            <MdStars className="inline  rounded-full mr-1 mb-1 text-lg" />{" "}
-            {avgRating}
-          </h4>
-          <hr className="border-dotted my-2"></hr>
-          <p className="text-[10px] mb-1 font-bold text-gray-500">
-            {totalRatingsString}
-          </p>
-        </div>
+
+        <p className="text-gray-500 text-sm lg:text-[13px] mb-2 lg:mt-3">
+          <IoBicycleSharp className="inline text-xl mr-2" />
+          {resInfo?.data?.cards[0]?.card?.card?.info?.feeDetails?.message ||
+            resInfo?.data?.cards[2]?.card?.card?.info?.feeDetails?.message}
+        </p>
       </div>
 
       <div>

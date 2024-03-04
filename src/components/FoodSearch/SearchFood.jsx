@@ -50,36 +50,40 @@ const SearchFood = () => {
   }, [searchApi, query]);
 
   return (
-    <div className="lg:w-3/5 mx-auto px-4 lg:px-10 mt-12">
-      <div className="mb-8 sticky top-24">
-        <input
-          type="text"
-          placeholder="Search for restaurants and food"
-          className="border-2 border-gray-300 w-full px-6 py-3 rounded-sm outline-none focus:shadow-md font-medium"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+    <div className="lg:w-3/5 mx-auto px-4 lg:px-10 ">
+      <div className="sticky top-16 bg-white w-full pt-12 pb-8">
+        <div className="">
+          <input
+            type="text"
+            placeholder="Search for restaurants and food"
+            className="border-2 border-gray-300 w-full px-6 py-3 rounded-sm outline-none focus:shadow-md font-medium"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
 
-        <FiSearch className="text-xl -ml-9 inline text-gray-600" />
+          <FiSearch className="text-xl -ml-9 inline text-gray-600" />
+        </div>
       </div>
 
-      {query.length === 0 ? (
-        <div className="px-4 mt-16">
-          <p className="font-extrabold text-xl text-gray-700 text-start">
-            Popular Cuisines
-          </p>
+      <div className="">
+        {query.length === 0 ? (
+          <div className="px-4 ">
+            <p className="font-extrabold text-xl text-gray-700 text-start">
+              Popular Cuisines
+            </p>
 
-          <div className="mt-8 flex">
-            {cuisine.map((item) => {
-              return <Cuisine key={item?.id} item={item} />;
-            })}
+            <div className="mt-8 flex">
+              {cuisine.map((item) => {
+                return <Cuisine key={item?.id} item={item} />;
+              })}
+            </div>
           </div>
-        </div>
-      ) : (
-        searchSuggestion.map((suggestion, index) => (
-          <SearchSuggestion key={index} suggestion={suggestion} />
-        ))
-      )}
+        ) : (
+          searchSuggestion.map((suggestion, index) => (
+            <SearchSuggestion key={index} suggestion={suggestion} />
+          ))
+        )}
+      </div>
     </div>
   );
 };

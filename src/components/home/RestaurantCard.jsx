@@ -4,7 +4,7 @@ import { MdStars } from "react-icons/md";
 const RestaurantCard = ({ resData }) => {
   const { name, cloudinaryImageId, cuisines, avgRating } = resData?.info;
   return (
-    <div className="w-[145px] mx-2 flex-col items-center my-3 transition-all duration-200 hover:scale-90 lg:w-64">
+    <div className="w-[145px] mx-1 flex-col items-center my-3 transition-all duration-200 hover:scale-90 lg:w-64">
       <img
         src={CDN_URL + cloudinaryImageId}
         alt="biryani"
