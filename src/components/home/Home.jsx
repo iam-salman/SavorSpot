@@ -69,7 +69,7 @@ const Home = () => {
               </h1>
             )}
           </div>
-          <div className="flex flex-wrap justify-between mx-4 lg:mx-20 lg:px-20 py-3">
+          <div className="flex flex-wrap justify-between mx-3 lg:mx-20 lg:px-20 py-3">
             {restaurantChain.map((restaurant) => (
               <Link
                 key={restaurant.info.id}
