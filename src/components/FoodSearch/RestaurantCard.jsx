@@ -12,7 +12,7 @@ const RestaurantCard = ({ item }) => {
 
   return (
     <div className="rounded-2xl bg-white my-2">
-      <div className="flex justify-start items-center gap-4 mx-3 py-4 w-[372px] lg:w-[390px] ">
+      <div className="flex justify-start items-center gap-4 mx-3 py-4  lg:w-[390px] ">
         <div className="w-[90px]">
           {cloudinaryImageId && (
             <img

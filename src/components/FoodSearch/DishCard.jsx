@@ -67,7 +67,7 @@ const DishCard = ({ item }) => {
           </h5>
         </div>
 
-        <div className="w-[372px] lg:w-[390px]">
+        <div className="lg:w-[390px]">
           <div className="flex items-start">
             <div className="w-3/5">
               <h3 className="font-bold text-[16px]">{name}</h3>
