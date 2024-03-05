@@ -13,9 +13,7 @@ const Home = () => {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const MENU_API =
-    HOME_API +
-    `${lat}%26lng%3D${lng}%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING`;
+  const MENU_API = HOME_API + `${lat}%26lng%3D${lng}`;
 
   const fetchData = async () => {
     setLoading(true);
@@ -34,7 +32,6 @@ const Home = () => {
         json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
       if (restaurantData) {
-        console.log(restaurantData);
         setApiData(json?.data?.cards);
         setRestaurantChain(restaurantData);
         setOnlineRestaurant(
@@ -73,11 +70,11 @@ const Home = () => {
             {restaurantChain.map((restaurant) => (
               <Link
                 key={restaurant.info.id}
-                to={`/restaurants/${restaurant.info.name
+                to={`/restaurants/${(restaurant.info.name || "")
                   .toLowerCase()
-                  .replace(/\s/g, "-")}-${restaurant.info.locality
+                  .replace(/\s/g, "-")}-${(restaurant.info.locality || "")
                   .toLowerCase()
-                  .replace(/\s/g, "-")}-${restaurant.info.areaName
+                  .replace(/\s/g, "-")}-${(restaurant.info.areaName || "")
                   .toLowerCase()
                   .replace(/\s/g, "-")}-${restaurant.info.id}`}
               >

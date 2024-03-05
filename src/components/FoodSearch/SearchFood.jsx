@@ -4,6 +4,7 @@ import { PRE_SEARCH_API, SEARCH_API } from "../../utils/constants";
 import Cuisine from "./Cuisine";
 import GlobalContext from "../../contexts/GlobalContext";
 import SearchSuggestion from "./SearchSuggestion";
+import { Link } from "react-router-dom";
 
 const SearchFood = () => {
   const [cuisine, setCuisine] = useState([]);
@@ -42,6 +43,7 @@ const SearchFood = () => {
   useEffect(() => {
     if (query.trim() !== "") {
       const timer = setTimeout(() => {
+        searchSuggestion.length = 0;
         fetchData(searchApi);
       }, 500);
 
@@ -72,16 +74,27 @@ const SearchFood = () => {
               Popular Cuisines
             </p>
 
-            <div className="mt-8 flex">
+            <div className="mt-8 flex flex-wrap justify-center">
               {cuisine.map((item) => {
-                return <Cuisine key={item?.id} item={item} />;
+                const query = item.action.link.split("//")[1]; // Extract the query here
+                return (
+                  <Link to={`/restaurants/search/${query}`} key={item?.id}>
+                    <Cuisine item={item} />
+                  </Link>
+                );
               })}
             </div>
           </div>
         ) : (
-          searchSuggestion.map((suggestion, index) => (
-            <SearchSuggestion key={index} suggestion={suggestion} />
-          ))
+          searchSuggestion.map((suggestion, index) => {
+            const query = `explore?query=${suggestion.text}`;
+
+            return (
+              <Link to={`/restaurants/search/${query}`} key={index}>
+                <SearchSuggestion suggestion={suggestion} />
+              </Link>
+            );
+          })
         )}
       </div>
     </div>

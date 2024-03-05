@@ -23,8 +23,8 @@ const CardItem = (props) => {
           <h5 className="font-bold text-sm text-gray-500">
             ₹{price / 100 || defaultPrice / 100}
           </h5>
-          <p className="mt-2 mb-6 lg:text-[13px] text-gray-400 pr-3 lg:pr-8">
-            {truncateDescription(description, 10)}
+          <p className="mt-2 mb-6 lg:text-[13px] text-gray-400 pr-3 lg:pr-8 truncate-3-lines">
+            {description}
           </p>
         </div>
 
