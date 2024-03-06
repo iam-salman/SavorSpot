@@ -22,7 +22,7 @@ const UserLogin = ({ setLoginPage }) => {
         }`}
         style={{ overflowY: "auto" }}
       >
-        <div className="z-30 bg-white">
+        <div className=" bg-white">
           <div
             className="ml-8 mr-4 lg:ml-40 mt-8"
             onClick={() => {

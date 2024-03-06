@@ -11,39 +11,58 @@ import SearchPlace from "../LocationSearch/SearchPlace";
 import GlobalContext from "../../contexts/GlobalContext";
 import Menu from "./Menu";
 import UserLogin from "../user/UserLogin";
+import { MdOutlineLogout } from "react-icons/md";
 
 const Header = () => {
-  const { coordinates, setSearchPlace, searchPlace, loginPage, setLoginPage } =
-    useContext(GlobalContext);
+  const {
+    coordinates,
+    setSearchPlace,
+    searchPlace,
+    loginPage,
+    setLoginPage,
+    isLogged,
+    setIsLogged,
+  } = useContext(GlobalContext);
 
   const { place } = coordinates;
 
   return (
     <div className="shadow-md sticky top-0 bg-white z-50 border-y border-gray-500 lg:border-none">
       <div className="md:flex md:justify-between md:items-center  h-[60px] md:h-[72px] lg:h-20 mx-4 lg:mx-36">
-        <div className="flex justify-between items-center mx-3 md:gap-3 lg:gap-4">
-          <Link to="/">
-            <img
-              src={logo}
-              alt=""
-              className="w-14 md:w-16 transition-all duration-300 hover:scale-110"
-            />
-          </Link>
+        <div className="flex justify-between items-center md:gap-3 lg:gap-4">
+          <div className="flex items-center justify-between gap-4">
+            <Link to="/">
+              <img
+                src={logo}
+                alt=""
+                className="w-14 md:w-16 transition-all duration-300 hover:scale-110"
+              />
+            </Link>
 
-          <div
-            className="flex items-center gap-2 cursor-pointer hover:text-custom-orange"
-            onClick={() => setSearchPlace(true)}
-          >
-            <p className="font-extrabold lg:text-xs relative">
-              Other
-              <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-black block"></span>
-            </p>
+            <div
+              className="flex items-center gap-2 cursor-pointer hover:text-custom-orange"
+              onClick={() => setSearchPlace(true)}
+            >
+              <p className="font-extrabold lg:text-xs relative">
+                Other
+                <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-black block"></span>
+              </p>
 
-            <p className="text-gray-400 lg:text-sm truncate lg:max-w-52 hidden md:block">
-              {place}
-            </p>
-            <FaAngleDown className="inline text-custom-orange font-bold" />
+              <p className="text-gray-400 lg:text-sm truncate lg:max-w-52 hidden md:block">
+                {place}
+              </p>
+              <FaAngleDown className="inline text-custom-orange font-bold" />
+            </div>
           </div>
+
+          {isLogged && (
+            <div
+              className="cursor-pointer md:hidden hover:text-custom-orange"
+              onClick={() => setIsLogged(false)}
+            >
+              <MdOutlineLogout className="inline text-2xl" />
+            </div>
+          )}
         </div>
 
         <div className="hidden md:block">
@@ -67,17 +86,31 @@ const Header = () => {
                 Help
               </NavLink>
             </li>
-            <li
-              className="cursor-pointer hover:text-custom-orange"
-              onClick={() => setLoginPage(true)}
-            >
-              <NavLink className="gap-3 flex items-center">
-                <LuUser className="inline text-2xl " />
-                Sign In
-              </NavLink>
-            </li>
+
+            {isLogged ? (
+              <li
+                className="cursor-pointer hover:text-custom-orange"
+                onClick={() => setIsLogged(false)}
+              >
+                <div className="gap-3 flex items-center">
+                  <MdOutlineLogout className="inline text-2xl" />
+                  <p className="">Logout</p>
+                </div>
+              </li>
+            ) : (
+              <li
+                className="cursor-pointer hover:text-custom-orange"
+                onClick={() => setLoginPage(true)}
+              >
+                <NavLink className="gap-3 flex items-center">
+                  <LuUser className="inline text-2xl " />
+                  Sign In
+                </NavLink>
+              </li>
+            )}
+
             <li className="cursor-pointer hover:text-custom-orange">
-              <NavLink className="gap-3 flex items-center">
+              <NavLink to="/cart" className="gap-3 flex items-center">
                 <PiShoppingCartSimpleBold className="inline text-2xl" />
                 Cart
               </NavLink>
@@ -90,7 +123,7 @@ const Header = () => {
       {loginPage && <UserLogin setLoginPage={setLoginPage} />}
 
       {/* Mobile Menu */}
-      <div className="bottom-0 md:hidden fixed w-full bg-white z-50 border-y border-gray-600">
+      <div className="bottom-0 md:hidden fixed w-full bg-white z-30 border-y border-gray-600">
         <Menu />
       </div>
     </div>

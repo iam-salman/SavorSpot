@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const EmptyCart = () => {
   return (
-    <div className="lg:w-1/2 mx-auto lg:my-10 lg:p-8">
+    <div className="lg:w-1/2 mx-auto lg:my-3 lg:p-8">
       <div className="my-20 mx-auto text-center">
         <img
           src={emptyCartImage}
@@ -16,7 +16,7 @@ const EmptyCart = () => {
           You can go to home page to view more restaurants
         </p>
         <Link to="/">
-          <button className="my-2 ml-5 px-4 py-2 bg-orange-500 text-white font-medium shadow-md">
+          <button className="my-2 ml-5 px-4 py-2 bg-orange-500 text-white font-bold shadow-md">
             SEE RESTAURANTS NEAR YOU
           </button>
         </Link>

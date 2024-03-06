@@ -8,6 +8,9 @@ import GlobalContext from "../../contexts/GlobalContext";
 
 const Menu = () => {
   const { loginPage, setLoginPage } = useContext(GlobalContext);
+
+  const { isLogged } = useContext(GlobalContext);
+
   return (
     <div className="mx-4">
       <div className="flex items-center justify-between h-[50px] text-xl">
@@ -35,7 +38,9 @@ const Menu = () => {
           onClick={() => setLoginPage(true)}
         >
           <LuUser className="-mb-2" />
-          <span className="text-[10px] -mb-2">Sign In</span>
+          <span className="text-[10px] -mb-2">
+            {isLogged ? "You" : "Sign In"}
+          </span>
         </NavLink>
       </div>
     </div>

@@ -8,9 +8,18 @@ const GlobalProvider = ({ children }) => {
     place: "Delhi, India",
   });
 
+  // state to show Search place or not
   const [searchPlace, setSearchPlace] = useState(false);
+
+  // state to show login/signup page or not
   const [loginPage, setLoginPage] = useState(false);
+
+  // state to choose which page to show login or signup
   const [isLogin, setIsLogin] = useState(true);
+
+  // state to show is user logged in or not
+
+  const [isLogged, setIsLogged] = useState(false);
 
   return (
     <GlobalContext.Provider
@@ -23,6 +32,8 @@ const GlobalProvider = ({ children }) => {
         setLoginPage,
         isLogin,
         setIsLogin,
+        isLogged,
+        setIsLogged,
       }}
     >
       {children}
