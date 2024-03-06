@@ -1,10 +1,6 @@
 import React from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 import { CDN_URL } from "../../utils/constants";
-import { GoArrowRight } from "react-icons/go";
-import { BsCaretUpSquare } from "react-icons/bs";
-import { FaCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const RestaurantCard = ({ item }) => {
   const { name, cloudinaryImageId, costForTwoMessage, cuisines } =

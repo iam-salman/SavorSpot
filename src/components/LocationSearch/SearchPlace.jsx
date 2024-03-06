@@ -64,7 +64,7 @@ const SearchArea = ({ setSearchArea }) => {
             />
           </div>
 
-          <div className="ml-8 mr-4 lg:ml-40 mt-8">
+          <div className="ml-8 mr-4 lg:ml-40 mt-8 hidden">
             <div className=" px-6 py-4 w-full lg:w-[360px] border-2 border-solid-gray-500 font-medium text-sm outline-none focus:shadow-md ">
               <div className="flex items-center gap-2">
                 <CiGps className="text-2xl text-gray-800 inline" />

@@ -9,6 +9,8 @@ const GlobalProvider = ({ children }) => {
   });
 
   const [searchPlace, setSearchPlace] = useState(false);
+  const [loginPage, setLoginPage] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
 
   return (
     <GlobalContext.Provider
@@ -17,6 +19,10 @@ const GlobalProvider = ({ children }) => {
         setCoordinates,
         searchPlace,
         setSearchPlace,
+        loginPage,
+        setLoginPage,
+        isLogin,
+        setIsLogin,
       }}
     >
       {children}
