@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { CiGps } from "react-icons/ci";
 import LoginPage from "./Login";
 import GlobalContext from "../../contexts/GlobalContext";
 import SignUp from "./SignUp";

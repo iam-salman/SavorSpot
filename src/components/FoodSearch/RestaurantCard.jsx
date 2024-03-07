@@ -3,7 +3,7 @@ import { TiStarFullOutline } from "react-icons/ti";
 import { CDN_URL } from "../../utils/constants";
 
 const RestaurantCard = ({ item }) => {
-  const { name, cloudinaryImageId, costForTwoMessage, cuisines } =
+  const { name, cloudinaryImageId, costForTwoMessage, cuisines, avgRating } =
     item?.card?.card?.info;
 
   return (
@@ -25,7 +25,10 @@ const RestaurantCard = ({ item }) => {
           </h3>
           <div className="flex items-center gap-2 font-bold mt-1 text-gray-500">
             <TiStarFullOutline className="text-base rounded-full mb-[1px]" />
-            <h5 className=" text-xs ">4.4 {" . "} 23 MINS</h5>
+            <h5 className=" text-xs ">
+              {avgRating} {" . "} {item?.card?.card?.info?.sla?.deliveryTime}{" "}
+              MINS
+            </h5>
             <h5 className="text-xs ">{costForTwoMessage}</h5>
           </div>
           <h5 className="text-xs mt-1 text-gray-500 truncate max-w-52">

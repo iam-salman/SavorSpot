@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-
 const SignUp = ({ setIsLogin }) => {
-  const handleLogin = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const name = formData.get("name");
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log("Logging in with:", { name, email, password });
 
     // Retrieve existing users data from localStorage
     const existingUsers = JSON.parse(localStorage.getItem("users")) || [];
@@ -48,7 +45,7 @@ const SignUp = ({ setIsLogin }) => {
         </p>
       </div>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSignUp}>
         <div className="mx-8 lg:ml-40 mt-8">
           <input
             type="text"

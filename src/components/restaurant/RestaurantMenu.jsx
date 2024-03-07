@@ -67,7 +67,7 @@ const RestaurantMenu = () => {
   );
 
   return (
-    <div className="mx-4 lg:w-1/2 lg:mx-auto lg:my-10 p-2">
+    <div className="mx-4 lg:w-1/2 lg:mx-auto lg:my-10 p-2 mb-10">
       <div className="">
         <div className="flex justify-between lg:my-4 items-center">
           <div className="w-3/5">

@@ -16,7 +16,7 @@ const EmptyCart = () => {
           You can go to home page to view more restaurants
         </p>
         <Link to="/">
-          <button className="my-2 ml-5 px-4 py-2 bg-orange-500 text-white font-bold shadow-md">
+          <button className="my-2 px-4 py-2 bg-orange-500 text-white font-bold shadow-md">
             SEE RESTAURANTS NEAR YOU
           </button>
         </Link>

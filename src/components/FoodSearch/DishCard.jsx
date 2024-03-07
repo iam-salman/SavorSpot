@@ -1,13 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 import { CDN_URL } from "../../utils/constants";
 import { GoArrowRight } from "react-icons/go";
 import { BsCaretUpSquare } from "react-icons/bs";
 import { FaCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import GlobalContext from "../../contexts/GlobalContext";
 
 const DishCard = ({ item }) => {
-  const { name, imageId, price, description, isVeg } = item?.card?.card?.info;
+  const {
+    name,
+    imageId,
+    price,
+    description,
+    isVeg,
+    id: dishId,
+  } = item?.card?.card?.info;
+
+  const { cartItems, setCartItems } = useContext(GlobalContext);
+
+  const handleAddItem = (dish) => {
+    const existingItemIndex = cartItems.findIndex(
+      (cartItem) => cartItem.info.id === dish.id
+    );
+    if (existingItemIndex !== -1) {
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingItemIndex].count++;
+      setCartItems(updatedCartItems);
+    } else {
+      const newItem = {
+        info: dish,
+        count: 1,
+      };
+      setCartItems((prev) => [...cartItems, newItem]);
+    }
+  };
+
   const {
     name: restaurant,
     locality,
@@ -92,6 +120,7 @@ const DishCard = ({ item }) => {
                 className={`bg-white shadow-sm text-green-500 font-medium px-6 py-[6px] lg:px-5 lg:py-1 rounded-md border border-green-500 hover:shadow-md absolute ${
                   imageId ? "mt-[75px] lg:mt-[68px]" : "mt-4"
                 }`}
+                onClick={() => handleAddItem(item?.card?.card?.info)} // Corrected
               >
                 ADD <span className="absolute text-[9px] text-right ">+</span>
               </button>

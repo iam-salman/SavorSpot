@@ -76,7 +76,7 @@ const Home = () => {
                   .toLowerCase()
                   .replace(/\s/g, "-")}-${(restaurant.info.areaName || "")
                   .toLowerCase()
-                  .replace(/\s/g, "-")}-${restaurant.info.id}`}
+                  .replace(/\s/g, "-")}-${restaurant.info.id || ""}`}
               >
                 <RestaurantCard resData={restaurant} />
               </Link>

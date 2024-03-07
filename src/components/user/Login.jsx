@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../contexts/GlobalContext";
 
@@ -7,7 +7,7 @@ const LoginPage = ({ setIsLogin }) => {
 
   const { setLoginPage, setIsLogged } = useContext(GlobalContext);
 
-  const handleSignUp = (event) => {
+  const handleLogin = (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -26,6 +26,12 @@ const LoginPage = ({ setIsLogin }) => {
 
         setLoginPage(false);
         setIsLogged(true);
+
+        const loggedin = {
+          email: email,
+        };
+
+        localStorage.setItem("loggedin", true);
 
         navigate("/");
       } else {
@@ -49,7 +55,7 @@ const LoginPage = ({ setIsLogin }) => {
         </p>
       </div>
 
-      <form onSubmit={handleSignUp}>
+      <form onSubmit={handleLogin}>
         <div className=" mx-8 lg:ml-40 mt-4">
           <input
             type="email"

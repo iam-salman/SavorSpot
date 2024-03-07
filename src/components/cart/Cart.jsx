@@ -1,32 +1,30 @@
+import { useContext } from "react";
 import CartItem from "./CartItem";
-
 import EmptyCart from "./EmptyCart";
-import { RiShoppingCart2Line } from "react-icons/ri";
+import GlobalContext from "../../contexts/GlobalContext";
+import PriceCalc from "./PriceCalc";
 
 const Cart = () => {
-  const handleClearCart = () => {};
-
-  const cartItems = [];
+  const { cartItems, setCartItems } = useContext(GlobalContext);
 
   return cartItems.length === 0 ? (
     <EmptyCart />
   ) : (
-    <div className="w-1/2 mx-auto my-10 p-8">
-      <h1 className="font-bold text-3xl mb-5">
-        Items in <RiShoppingCart2Line className="inline text-4xl" />
-      </h1>
-      <div className="text-right mr-4">
-        <button
-          className="px-4 py-2 font-bold text-white bg-red-600 border border-gray-200 shadow-lg"
-          onClick={handleClearCart}
-        >
-          CLEAR CART
-        </button>
+    <div className="lg:flex lg:justify-between lg:w-3/4 lg:gap-20 mx-auto lg:pt-10 pt-4 md:pt-6 mb-20">
+      <div className="lg:w-1/2">
+        <h1 className="font-bold lg:font-extrabold lg:text-3xl text-2xl mb-5 ml-5">
+          Cart
+        </h1>
+
+        <div className="">
+          {cartItems.map((item) => {
+            return <CartItem key={item.info.id} item={item} />;
+          })}
+        </div>
       </div>
-      <div className="p-3 text-justify leading-8">
-        {cartItems.map((item) => (
-          <CartItem key={item.infoData.card.info.id} item={item} />
-        ))}
+
+      <div className="lg:w-1/2">
+        <PriceCalc />
       </div>
     </div>
   );
