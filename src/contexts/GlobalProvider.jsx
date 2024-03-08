@@ -25,7 +25,7 @@ const GlobalProvider = ({ children }) => {
 
   // cart items will be placed in this arra
 
-  const [cartItems, setCartItems] = useState();
+  const [cartItems, setCartItems] = useState([]);
 
   return (
     <GlobalContext.Provider
