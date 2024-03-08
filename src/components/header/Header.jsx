@@ -101,7 +101,7 @@ const Header = () => {
                 Offers
               </NavLink>
             </li>
-            <li className="cursor-pointer">
+            <li className="cursor-pointer hidden">
               <NavLink
                 to="/help"
                 className={`gap-3 flex items-center hover:text-custom-orange ${
