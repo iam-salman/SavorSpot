@@ -33,10 +33,6 @@ const RestaurantMenu = () => {
 
       const menuData = await response.json();
       setResInfo(menuData);
-
-      const ide = menuData?.data?.cards[2]?.card?.card?.info;
-
-      console.log("ide", ide);
     } catch (error) {
       console.error("Error fetching menu:", error);
     }
