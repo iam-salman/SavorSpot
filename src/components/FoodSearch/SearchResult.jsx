@@ -17,7 +17,7 @@ const SearchResult = () => {
 
   const searchResultApi =
     SEARCH_RESULT +
-    `3Flat%3D${lat}%26lng%3D${lng}%26str%3D${query}%26submitAction%3DENTER`;
+    `lat=${lat}&lng=${lng}&str=${query}&trackingId=null&submitAction=ENTER&queryUniqueId=null`;
 
   const fetchResult = async () => {
     try {

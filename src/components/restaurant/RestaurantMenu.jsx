@@ -22,7 +22,7 @@ const RestaurantMenu = () => {
 
   const api =
     MENU_API +
-    `${lat}%26lng%3D${lng}%26restaurantId%3D${id}%26catalog_qa%3Dundefined%26submitAction%3DENTER`;
+    `${lat}&lng=${lng}&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`;
 
   const fetchMenu = async () => {
     try {
@@ -33,6 +33,10 @@ const RestaurantMenu = () => {
 
       const menuData = await response.json();
       setResInfo(menuData);
+
+      const ide = menuData?.data?.cards[2]?.card?.card?.info;
+
+      console.log("ide", ide);
     } catch (error) {
       console.error("Error fetching menu:", error);
     }
@@ -98,11 +102,14 @@ const RestaurantMenu = () => {
           </div>
         </div>
 
-        <p className="text-gray-500 text-sm lg:text-[13px] mb-2 lg:mt-3">
-          <IoBicycleSharp className="inline text-xl mr-2" />
-          {resInfo?.data?.cards[0]?.card?.card?.info?.feeDetails?.message ||
-            resInfo?.data?.cards[2]?.card?.card?.info?.feeDetails?.message}
-        </p>
+        <p
+          className="text-gray-500 text-sm lg:text-[13px] mb-2 lg:mt-3"
+          dangerouslySetInnerHTML={{
+            __html:
+              resInfo?.data?.cards[0]?.card?.card?.info?.feeDetails?.message ||
+              resInfo?.data?.cards[2]?.card?.card?.info?.feeDetails?.message,
+          }}
+        ></p>
       </div>
 
       <div>

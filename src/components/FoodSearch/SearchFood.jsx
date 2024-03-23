@@ -12,10 +12,8 @@ const SearchFood = () => {
   const [query, setQuery] = useState("");
   const { coordinates } = useContext(GlobalContext);
   const { lat, lng } = coordinates;
-  const preSearchApi = PRE_SEARCH_API + `${lat}%26lng%3D${lng}`;
-  const searchApi =
-    SEARCH_API +
-    `lat%3D${lat}%26lng%3D${lng}%26str%3D${query}%26trackingId%3Dnull`;
+  const preSearchApi = PRE_SEARCH_API + `lat=${lat}&lng=${lng}`;
+  const searchApi = `${SEARCH_API}lat=${lat}&lng=${lng}&str=${query}&trackingId=null`;
 
   const fetchData = async (api) => {
     try {

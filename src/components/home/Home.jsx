@@ -13,7 +13,7 @@ const Home = () => {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const MENU_API = HOME_API + `${lat}%26lng%3D${lng}`;
+  const MENU_API = HOME_API + `lat=${lat}&lng=${lng}`;
 
   const fetchData = async () => {
     setLoading(true);
