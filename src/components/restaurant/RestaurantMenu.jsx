@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import RestaurantItemCategory from "./RestaurantItemCategory";
 import { TbCoinRupee } from "react-icons/tb";
 import { MdStars, MdTimelapse } from "react-icons/md";
-import { IoBicycleSharp } from "react-icons/io5";
 import { MENU_API } from "../../utils/constants";
 import GlobaContext from "../../contexts/GlobalContext";
 
@@ -59,7 +58,7 @@ const RestaurantMenu = () => {
 
   const data = (
     resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards ||
-    resInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
   )?.filter(
     (item) =>
       item?.card?.card?.["@type"] ===

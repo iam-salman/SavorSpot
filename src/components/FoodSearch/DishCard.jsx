@@ -117,8 +117,8 @@ const DishCard = ({ item }) => {
               )}
 
               <button
-                className={`bg-white shadow-sm text-green-500 font-medium px-6 py-[6px] lg:px-5 lg:py-1 rounded-md border border-green-500 hover:shadow-md absolute ${
-                  imageId ? "mt-[75px] lg:mt-[68px]" : "mt-4"
+                className={`bg-white shadow-sm text-green-500 font-bold px-6 py-[6px] lg:px-[28px] lg:py-2 text-xs rounded-md border border-green-500 hover:shadow-md absolute ${
+                  imageId ? "mt-20 lg:mt-[68px]" : "mt-4"
                 }`}
                 onClick={() => handleAddItem(item?.card?.card?.info)} // Corrected
               >

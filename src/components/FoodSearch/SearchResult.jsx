@@ -30,8 +30,6 @@ const SearchResult = () => {
       const json = await response.json();
 
       setResultInfo(json);
-
-      console.log(json);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
