@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      "/dapi": "https://www.swiggy.com",
+      // "/dapi": "https://www.swiggy.com",
     },
   },
   plugins: [react()],
